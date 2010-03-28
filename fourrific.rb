@@ -17,8 +17,10 @@ get '/' do
 	end
 	
 	c = Fourrific::Checkins.new(session[:token],session[:secret])
-	
 	@c = c.friends
+	
+	city = Fourrific::IPGeocode.new
+	@city = city.you_are_in 
 	
 	erb :index
 

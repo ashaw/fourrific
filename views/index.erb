@@ -3,11 +3,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" href="style.css">
-	<title>Fourrific</title>
+	<title>Fourrific - <%= @city %></title>
 
 </head>
 <body>
-<h1>Fourrific</h1>
+<h1>Fourrific (you're in <%= @city %>)</h1>
 
 <ul id="checkins">
 	<% (@c/:checkin).each do |checkin| %>
@@ -15,6 +15,7 @@
 		<span class="date"><%= (checkin/:created) %></span>
 		<h2><%= (checkin/:user/:firstname) %> <%= (checkin/:user/:lastname) %> @ <%= (checkin/:venue/:name) %></h2>
 		<p><span class="address"><%= (checkin/:venue/:address) %></span> <span class="shout"><%= (checkin/:shout) %></span></p>
+		<p><%= (checkin/:distance) %></p>
 	</li>
 	<% end %>
 </ul>

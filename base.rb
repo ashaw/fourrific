@@ -1,6 +1,8 @@
+require 'socket'
 require 'yaml'
 require 'oauth'
 require 'hpricot'
+require 'geokit'
 
 module Fourrific
 	
@@ -53,6 +55,30 @@ module Fourrific
 		end
 	
 	end
+	
+	class IPGeocode
+		
+		def initialize
+			# http://www.commandlinefu.com/commands/view/1733/get-own-public-ip-address
+			ip = `curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'`.strip
+			
+			@g = Geokit::Geocoders::MultiGeocoder.geocode(ip)
+		end
+		
+		def ll
+			@ll = {}
+		
+			@ll[:lat] = @g.lat
+			@ll[:long] = @g.lng
+		
+			@ll
+		end
+		
+		def you_are_in
+			@g.city
+		end
+		
+	end
 
 	class Checkins		
 		def initialize(access,secret)
@@ -67,11 +93,16 @@ module Fourrific
 		end
 		
 		def friends
-			@friends = @access_token.get('/v1/checkins').body	
+			
+			ip = Fourrific::IPGeocode.new
+			ip = ip.ll
+			@friends = @access_token.get("/v1/checkins?geolat=#{ip[:lat]}&geolong=#{ip[:long]}").body	
 				
 			@friends = Hpricot(@friends)
 		end
 		
 	end
+	
 
 end
+
