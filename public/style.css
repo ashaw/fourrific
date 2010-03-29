@@ -112,3 +112,6 @@ ul li.checkin p {
 	font-size:11px;
 	text-align:center;
 	}
+#error h2 a {
+	text-decoration:underline;
+	}

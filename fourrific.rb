@@ -66,7 +66,7 @@ error 404 do
 end
 
 error OAuth::Unauthorized do
-	@msg = "For some reason, I can't log you into foursquare. Try clearing your cache and cookies, and <a href='/'>starting over</a>"
+	@msg = "For some reason, I can't log you into foursquare. Try clearing your cache and cookies, and <a href='/'>starting over</a>."
 	
 	erb :unauthorized
 end
