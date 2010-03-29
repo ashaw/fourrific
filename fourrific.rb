@@ -22,7 +22,10 @@ get '/' do
 		t = h.access_token(params[:oauth_token],session[:request_secret])
 		session[:token] = t[:token]
 		session[:secret] = t[:secret]
-	
+		
+		#if you reload the page with the oauth param, you 500, better to redirect and kill the possibility
+		redirect '/' 
+		
 	elsif session[:token].nil?
 		redirect '/login'	
 	end
