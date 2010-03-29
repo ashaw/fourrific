@@ -91,6 +91,10 @@ ul li.checkin p {
 	font-style:italic;
 	}
 
+.off_grid {
+	color:#660000;
+}
+
 .userpic {
 	float:right;
 	z-index:-5;
