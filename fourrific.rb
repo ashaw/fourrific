@@ -53,6 +53,18 @@ get '/login' do
 	erb :login
 end
 
+error do
+	@msg = env['sinatra.error'].name
+	
+	erb :unauthorized
+end
+
+error 404 do
+	@msg = "404. That page doesn't exist. <a href='/'>Go home</a>."
+	
+	erb :unauthorized
+end
+
 error OAuth::Unauthorized do
 	@msg = "For some reason, I can't log you into foursquare. Try clearing your cache and cookies, and <a href='/'>starting over</a>"
 	
