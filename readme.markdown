@@ -1,8 +1,11 @@
 # Fourrific: A Sinatra-based Foursquare client
 
-1. Register your client with foursquare [here](http://foursquare.com/oauth/register)
-2. Rename credentials.yml.sample to credentials.yml and paste in your consumer key and consumer secret.
-3. boot up with `ruby ./fourrific.rb` and open a web browser to localhost:4567
+1. `git clone git://github.com/ashaw/fourrific.git`
+2. `cd fourrific`
+3. `gem install bundler && bundle install`
+4. Register your client with foursquare [here](http://foursquare.com/oauth/register)
+5. Rename credentials.yml.sample to credentials.yml and paste in your consumer key and consumer secret.
+6. boot up with `ruby ./fourrific.rb` and open a web browser to localhost:4567
 
 
 ## License (MIT)

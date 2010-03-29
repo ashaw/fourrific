@@ -9,11 +9,19 @@ body {
 	font-family: Raleway, Helvetica, Arial, sans-serif;
 	font-size:16px;
 	color:#222222;
+	width:300px;
+	margin:0 auto;
 }
 
+a {
+	text-decoration:none;
+	color:#222222;
+}
+	
 h2 {
-	padding-top:0;
+	padding-top:5px;
 	margin-top:0;
+	margin-bottom:5px;
 	}
 
 ul {
@@ -25,6 +33,7 @@ ul li {
 	list-style-type:none;
 	padding:15px;
 	background:#f0f0f0;
+	margin:0;
 	margin-bottom:5px;
 }
 
@@ -33,10 +42,14 @@ ul#geo_option li {
 	cursor:pointer;
 	padding:20px;
 	}
-	
-ul#geo_option li.active_tab {
-	background:#999999;
-	color:#fff;
+
+ul#geo_option li {
+	background:#f5f5f5;
+}
+
+ul#geo_option li.active_tab,a:hover {
+	background:#999999 !important;
+	color:#fff !important;
 }
 
 ul li.far {
@@ -45,10 +58,36 @@ ul li.far {
 	background:#f5f5f5;
 }
 
-time {
+ul li.far a {
+	color: #858585;
+}
+
+time,.distance {
 	font-family:Verdana, Helvetica, Arial,sans-serif;
 	font-size:10px;
 	line-height:8px;
 	margin:0;
 	padding:0;
 	}
+
+p {
+	font-family:Verdana,helvetica,sans-serif;
+	margin:5px;
+	font-size:11px;
+	font-weight:normal;
+	}
+	
+.shout {
+	font-style:italic;
+	}
+
+.userpic {
+	float:right;
+	z-index:-5;
+	margin-right:-15px;
+	padding-left:15px;
+	}
+.userpic img {
+	width:50px;
+	height:50px;
+}

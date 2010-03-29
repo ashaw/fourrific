@@ -1,9 +1,4 @@
-require 'socket'
 require 'yaml'
-require 'oauth'
-require 'crack/xml'
-require 'geokit'
-require 'active_support'
 
 module Fourrific
 	

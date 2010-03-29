@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="jquery.timeago.js"></script>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 	
 	<script type="text/javascript">
 	function clearTab() {
@@ -46,10 +47,12 @@
 <ul id="checkins">
 	<% @c['checkins']['checkin'].each do |checkin| %>
 	<li class="checkin <% if checkin['distance'].to_i > 25 %>far<% end %>">
-		<time class="timeago" datetime="<%= checkin['created'] %>"><%= checkin['created'].to_time.strftime("%I:%M%p, %m/%d/%Y") %></time>
-		<h2><%= checkin['user']['firstname'] %> <%= checkin['user']['lastname'] %> @ <%= checkin['venue']['name'] %></h2>
-		<p><span class="address"><%= checkin['venue']['address'] %> <%= checkin['venue']['city'] %></span> <span class="shout"><%= checkin['shout'] %></span></p>
-		<p><%= checkin['distance'] %> miles away</p>
+		<div class="userpic"><img src="<%= checkin['user']['photo'] %>" alt="userpic"></div>
+		
+		<time class="timeago" datetime="<%= checkin['created'] %>"><%= checkin['created'].to_time.strftime("%I:%M%p, %m/%d/%Y") %></time> | <span class="distance"><%= checkin['distance'] %> miles away</span>
+		
+		<h2><a href="http://foursquare.com/user/-<%= checkin['user']['id'] %>"><%= checkin['user']['firstname'] %> <%= checkin['user']['lastname'] %></a> @ <a href="http://foursquare.com/venue/<%= checkin['venue']['id'] %>"><%= checkin['venue']['name'] %></a></h2>
+		<p><span class="address"><%= checkin['venue']['address'] %><% if checkin['venue']['city'] %>, <%= checkin['venue']['city'] %><% end %></span></p><p><span class="shout"><%= checkin['shout'] %></span></p>
 	</li>
 	<% end %>
 </ul>

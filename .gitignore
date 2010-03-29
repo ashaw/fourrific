@@ -1,3 +1,4 @@
 credentials.yml
 *.DS_Store
+.bundle
 example.xml
