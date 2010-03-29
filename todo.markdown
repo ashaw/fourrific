@@ -1,7 +1,7 @@
 # TODO
 
 * gem bundler
-* sort friends list by distance
+* sort friends list by time and distance
 * friendly relative dates
 * ajax reloader
 * style

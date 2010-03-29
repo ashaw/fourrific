@@ -1,8 +1,9 @@
 require 'socket'
 require 'yaml'
 require 'oauth'
-require 'hpricot'
+require 'crack/xml'
 require 'geokit'
+require 'active_support'
 
 module Fourrific
 	
@@ -98,7 +99,14 @@ module Fourrific
 			ip = ip.ll
 			@friends = @access_token.get("/v1/checkins?geolat=#{ip[:lat]}&geolong=#{ip[:long]}").body	
 				
-			@friends = Hpricot(@friends)
+			@friends = Crack::XML.parse(@friends)
+			@friends['checkins']['checkin'].each do |checkin|
+				checkin['created'] = checkin['created'].to_time.iso8601
+				checkin['distance'] = (checkin['distance'].to_i / 1609.344).to_i
+			end
+	
+			@friends
+		
 		end
 		
 	end

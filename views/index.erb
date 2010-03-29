@@ -3,20 +3,55 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.timeago.js"></script>
+	
+	<script type="text/javascript">
+	function clearTab() {
+		$("li").each(function() {
+			$(this).removeClass("active_tab");
+		});
+	}
+	
+	$(document).ready(function() {
+  	$("time.timeago").timeago();
+  	
+  	$("ul#geo_option li.everywhere").click(function(){
+  		clearTab();
+  		$(this).addClass("active_tab");
+  		$("ul#checkins li.far").fadeIn();
+  	});
+  	
+  	$("ul#geo_option li.local").click(function(){
+  		clearTab();
+  		$(this).addClass("active_tab");
+  		$("ul#checkins li.far").fadeOut();	
+  	});
+	});
+</script>
+	
 	<title>Fourrific - <%= @city %></title>
 
 </head>
 <body>
-<h1>Fourrific (you're in <%= @city %>)</h1>
+<h1>Fourrific</h1>
+
+<ul id="geo_option">
+	<li class="local active_tab"><%= @city %></li>
+	<li class="everywhere">Everywhere</li>
+</ul>
+
+<div style="clear:left;"></div>
 
 <ul id="checkins">
-	<% (@c/:checkin).each do |checkin| %>
-	<li class="checkin">
-		<span class="date"><%= (checkin/:created) %></span>
-		<h2><%= (checkin/:user/:firstname) %> <%= (checkin/:user/:lastname) %> @ <%= (checkin/:venue/:name) %></h2>
-		<p><span class="address"><%= (checkin/:venue/:address) %></span> <span class="shout"><%= (checkin/:shout) %></span></p>
-		<p><%= (checkin/:distance) %></p>
+	<% @c['checkins']['checkin'].each do |checkin| %>
+	<li class="checkin <% if checkin['distance'].to_i > 25 %>far<% end %>">
+		<time class="timeago" datetime="<%= checkin['created'] %>"><%= checkin['created'].to_time.strftime("%I:%M%p, %m/%d/%Y") %></time>
+		<h2><%= checkin['user']['firstname'] %> <%= checkin['user']['lastname'] %> @ <%= checkin['venue']['name'] %></h2>
+		<p><span class="address"><%= checkin['venue']['address'] %> <%= checkin['venue']['city'] %></span> <span class="shout"><%= checkin['shout'] %></span></p>
+		<p><%= checkin['distance'] %> miles away</p>
 	</li>
 	<% end %>
 </ul>
 </body>
+</html>
