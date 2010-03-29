@@ -6,8 +6,9 @@
 }		
 
 body {
-	font-family: Raleway, Helvetica, Arial, sans-serif;
+	font-family: 'Raleway', Helvetica, Arial, sans-serif;
 	font-size:16px;
+	font-weight:normal;
 	color:#222222;
 	width:300px;
 	margin:0 auto;
@@ -17,11 +18,16 @@ a {
 	text-decoration:none;
 	color:#222222;
 }
+
+h1 {
+	font-weight:normal;
+	}
 	
 h2 {
 	padding-top:5px;
 	margin-top:0;
 	margin-bottom:5px;
+	font-weight:normal;
 	}
 
 ul {
@@ -102,7 +108,7 @@ ul li.checkin p {
 	border-top:1px solid #cecece;
 }
 #foot p,#foot p a {
-	color:#cecece;
+	color:#858585;
 	font-size:11px;
 	text-align:center;
 	}
