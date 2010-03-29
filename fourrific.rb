@@ -15,6 +15,7 @@ require File.dirname(__FILE__) + '/base'
 enable :sessions
 
 get '/' do
+	@ip = @env['REMOTE_ADDR']
 	
 	if params[:oauth_token]
 		h = Fourrific::Authorize.new
@@ -27,9 +28,9 @@ get '/' do
 	end
 	
 	c = Fourrific::Checkins.new(session[:token],session[:secret])
-	@c = c.friends
+	@c = c.friends(@ip)
 	
-	city = Fourrific::IPGeocode.new
+	city = Fourrific::IPGeocode.new(@ip)
 	@city = city.you_are_in 
 	
 	erb :index

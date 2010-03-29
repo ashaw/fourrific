@@ -54,9 +54,12 @@ module Fourrific
 	
 	class IPGeocode
 		
-		def initialize
+		def initialize(ip)
+			# compensate for localhost
 			# http://www.commandlinefu.com/commands/view/1733/get-own-public-ip-address
-			ip = `curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'`.strip
+			if ip == "127.0.0.1"
+				ip = `curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'`.strip
+			end
 			
 			@g = Geokit::Geocoders::MultiGeocoder.geocode(ip)
 		end
@@ -88,9 +91,9 @@ module Fourrific
 			@access_token = OAuth::AccessToken.new(@consumer, access, secret)			
 		end
 		
-		def friends
+		def friends(ip)
 			
-			ip = Fourrific::IPGeocode.new
+			ip = Fourrific::IPGeocode.new(ip)
 			ip = ip.ll
 			@friends = @access_token.get("/v1/checkins?geolat=#{ip[:lat]}&geolong=#{ip[:long]}").body	
 				
