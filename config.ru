@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'fourrific'
 
-set :environment => :development
+set :environment => :production
 enable :sessions
 
 run Sinatra::Application
