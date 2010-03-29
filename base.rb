@@ -2,6 +2,8 @@ require 'yaml'
 
 module Fourrific
 	
+	VERSION = '0.0.1'
+	
 	class Authorize
 		
 		#get keys from YAML
