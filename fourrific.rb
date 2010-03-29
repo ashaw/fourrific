@@ -52,3 +52,9 @@ get '/login' do
 	redirect "#{@url}"
 	erb :login
 end
+
+error OAuth::Unauthorized do
+	@msg = "For some reason, I can't log you into foursquare. Try clearing your cache and cookies, and <a href='/'>starting over</a>"
+	
+	erb :unauthorized
+end
