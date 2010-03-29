@@ -76,6 +76,10 @@ p {
 	font-size:11px;
 	font-weight:normal;
 	}
+
+ul li.checkin p {
+	margin-left:0;
+	}
 	
 .shout {
 	font-style:italic;

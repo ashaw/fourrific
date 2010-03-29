@@ -7,6 +7,9 @@
 5. Rename credentials.yml.sample to credentials.yml and paste in your consumer key and consumer secret.
 6. boot up with `ruby ./fourrific.rb` and open a web browser to localhost:4567
 
+or
+
+1. Go [here](http://fourrific.shhhaw.com).
 
 ## License (MIT)
 
