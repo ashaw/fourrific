@@ -97,7 +97,7 @@ module Fourrific
 			
 			ip = Fourrific::IPGeocode.new(ip)
 			ip = ip.ll
-			@friends = @access_token.get("/v1/checkins?geolat=#{ip[:lat]}&geolong=#{ip[:long]}").body	
+			@friends = @access_token.get("/v1/checkins?geolat=#{ip[:lat]}&geolong=#{ip[:long]}", {'User-Agent' => "fourrific:#{Fourrific::VERSION}"}).body	
 				
 			@friends = Crack::XML.parse(@friends)
 			@friends['checkins']['checkin'].each do |checkin|
