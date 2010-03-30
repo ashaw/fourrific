@@ -29,12 +29,12 @@ get '/' do
 	elsif session[:token].nil?
 		redirect '/login'	
 	end
+		
+	@g = Fourrific::IPGeocode.new(@ip)
+	@city = @g.you_are_in
 	
 	c = Fourrific::Checkins.new(session[:token],session[:secret])
-	@c = c.friends(@ip)
-	
-	city = Fourrific::IPGeocode.new(@ip)
-	@city = city.you_are_in 
+	@c = c.friends(@g)
 	
 	erb :index
 

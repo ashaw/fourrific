@@ -19,8 +19,25 @@ a {
 	color:#222222;
 }
 
+a:hover {
+	background:#cecece !important;
+}
+
+#top {
+	background:#999999;
+	padding:8px 15px 5px 15px;
+	margin-top:0;
+	height:67px;
+}
+
 h1 {
 	font-weight:normal;
+	color:#fff;
+	margin:0;
+	padding:5px 0 10px 0;
+	height:24px;
+	font-size:24px;
+	text-shadow: 0 0 0 #000;
 	}
 	
 h2 {
@@ -40,23 +57,42 @@ ul li {
 	padding:15px;
 	background:#f0f0f0;
 	margin:0;
-	margin-bottom:5px;
 }
 
-ul#geo_option li {
-	float:left;
-	cursor:pointer;
-	padding:20px;
+ul#geo_option {
+	margin-left:0;
 	}
 
 ul#geo_option li {
+	height:16px;
+	float:left;
+	cursor:pointer;
+	padding:8px;
 	background:#f5f5f5;
+	margin-right:5px;
+	margin-bottom:-1px;
+	background:#222222;;
+	color:#fff;
+	border:1px solid #000;
+	border-bottom:1px solid #000;
+	opacity:.60;
 }
 
-ul#geo_option li.active_tab,a:hover {
-	background:#999999 !important;
-	color:#fff !important;
+ul#geo_option li.active_tab {
+	background:#f0f0f0 !important;
+	color:#222222; !important;
+	z-index:5;
+	border-bottom:1px solid #f0f0f0;
+	opacity:.99;
 }
+
+ul#checkins {
+	border-top:1px solid #000;
+	}
+
+ul li.checkin {
+	margin-bottom:5px;
+	}
 
 ul li.far {
 	display:none;
@@ -66,6 +102,10 @@ ul li.far {
 
 ul li.far a {
 	color: #858585;
+}
+
+ul li.far .userpic {
+	opacity:.60;
 }
 
 time,.distance {

@@ -93,10 +93,10 @@ module Fourrific
 			@access_token = OAuth::AccessToken.new(@consumer, access, secret)			
 		end
 		
-		def friends(ip)
+		#g is a geocode array from IPGeocode.new
+		def friends(g)
 			
-			ip = Fourrific::IPGeocode.new(ip)
-			ip = ip.ll
+			ip = g.ll
 			@friends = @access_token.get("/v1/checkins?geolat=#{ip[:lat]}&geolong=#{ip[:long]}", {'User-Agent' => "fourrific:#{Fourrific::VERSION}"}).body	
 				
 			@friends = Crack::XML.parse(@friends)
