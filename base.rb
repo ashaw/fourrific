@@ -109,6 +109,11 @@ module Fourrific
 		
 		end
 		
+		def first_is_far?
+			checkin = @friends['checkins']['checkin'][0]
+			return true if checkin['distance'] > 25
+		end
+		
 	end
 	
 

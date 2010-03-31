@@ -2,15 +2,19 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" href="raleway.css">
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="jquery.timeago.js"></script>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+	<link rel="shortcut icon"
+href="favicon.png"
+type="image/png">
 	
 	<script type="text/javascript">
 	function clearTab() {
 		$("li").each(function() {
-			$(this).removeClass("active_tab");
+			$(this).removeClass("active_tab").removeClass("active_everywhere_first_far");
 		});
 	}
 	
@@ -20,6 +24,9 @@
   	$("ul#geo_option li.everywhere").click(function(){
   		clearTab();
   		$(this).addClass("active_tab");
+  		<% if @first_is_far %>
+  			$(this).addClass("active_everywhere_first_far");
+  		<% end %>
   		$("ul#checkins li.far").fadeIn();
   	});
   	

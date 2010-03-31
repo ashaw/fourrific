@@ -36,6 +36,10 @@ get '/' do
 	c = Fourrific::Checkins.new(session[:token],session[:secret])
 	@c = c.friends(@g)
 	
+	if c.first_is_far?
+		@first_is_far = true
+	end
+	
 	erb :index
 
 end
