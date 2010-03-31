@@ -32,9 +32,14 @@ get '/' do
 		
 	@g = Fourrific::IPGeocode.new(@ip)
 	@city = @g.you_are_in
-	
-	c = Fourrific::Checkins.new(session[:token],session[:secret])
-	@c = c.friends(@g)
+
+	begin
+		c = Fourrific::Checkins.new(session[:token],session[:secret])
+		@c = c.friends(@g)
+		if c.error && c.error.length > 0
+			raise c.error
+		end
+	end
 	
 	if c.first_is_far?
 		@first_is_far = true
@@ -58,7 +63,7 @@ get '/login' do
 end
 
 error do
-	@msg = env['sinatra.error'].name
+	@msg = env['sinatra.error']
 	
 	erb :unauthorized
 end

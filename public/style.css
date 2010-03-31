@@ -137,7 +137,7 @@ ul li.checkin p {
 	font-style:italic;
 	}
 
-.off_grid {
+.off_grid, #error h2 {
 	color:#660000;
 }
 

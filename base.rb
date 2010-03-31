@@ -2,7 +2,7 @@ require 'yaml'
 
 module Fourrific
 	
-	VERSION = '0.0.1'
+	VERSION = '0.0.2'
 	
 	class Authorize
 		
@@ -98,12 +98,23 @@ module Fourrific
 			
 			ip = g.ll
 			@friends = @access_token.get("/v1/checkins?geolat=#{ip[:lat]}&geolong=#{ip[:long]}", {'User-Agent' => "fourrific:#{Fourrific::VERSION}"}).body	
-				
-			@friends = Crack::XML.parse(@friends)
-			@friends['checkins']['checkin'].each do |checkin|
-				checkin['created'] = checkin['created'].to_time.iso8601
-				checkin['distance'] = (checkin['distance'].to_i / 1609.344).to_i
+			
+			begin
+				@friends = Crack::XML.parse(@friends)
+				if @friends['unauthorized']
+					@error = "#{@friends['unauthorized']}. Clear your cookies & cache and try again."
+				elsif @friends['ratelimited']
+					@error = "#{@friends['ratelimited']}. Please try again later."
+				elsif @friends['error']
+					@error = "#{@friends['error']}"
+				else
+					@friends['checkins']['checkin'].each do |checkin|
+						checkin['created'] = checkin['created'].to_time.iso8601
+						checkin['distance'] = (checkin['distance'].to_i / 1609.344).to_i
+					end
+				end				
 			end
+			
 	
 			@friends
 		
@@ -112,6 +123,10 @@ module Fourrific
 		def first_is_far?
 			checkin = @friends['checkins']['checkin'][0]
 			return true if checkin['distance'] > 25
+		end
+		
+		def error
+			@error 
 		end
 		
 	end
